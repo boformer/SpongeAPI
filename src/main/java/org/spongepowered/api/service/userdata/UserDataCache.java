@@ -49,7 +49,7 @@ public interface UserDataCache {
     /**
      * Discards the cached data for a user.
      *
-     * @param uniqueId The unique ID.
+     * @param uniqueId The unique ID
      */
     void invalidate(UUID uniqueId);
 }
