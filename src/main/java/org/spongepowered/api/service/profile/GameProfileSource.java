@@ -29,7 +29,6 @@ import java.util.UUID;
 
 import org.spongepowered.api.GameProfile;
 
-import com.google.common.base.Optional;
 import com.google.common.util.concurrent.ListenableFuture;
 
 /**
@@ -43,7 +42,7 @@ public interface GameProfileSource {
      * @param uniqueId The unique ID
      * @return The result of the request
      */
-    ListenableFuture<Optional<GameProfile>> get(UUID uniqueId);
+    ListenableFuture<GameProfile> get(UUID uniqueId);
 
     /**
      * Gets a collection of {@link GameProfile}s by their unique IDs.
@@ -59,7 +58,7 @@ public interface GameProfileSource {
      * @param name The username
      * @return The result of the request
      */
-    ListenableFuture<Optional<GameProfile>> get(String name);
+    ListenableFuture<GameProfile> get(String name);
 
     /**
      * Gets a collection of {@link GameProfile}s by their user names.
