@@ -25,8 +25,10 @@
 package org.spongepowered.api;
 
 import com.google.common.base.Optional;
+
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.entity.player.User;
 import org.spongepowered.api.net.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.util.command.source.ConsoleSource;
@@ -59,7 +61,7 @@ public interface Server extends ChannelRegistrar {
     int getMaxPlayers();
 
     /**
-     * Gets a {@link Player} by their unique id
+     * Gets a {@link Player} by their unique id.
      *
      * @param uniqueId The UUID to get the player from
      * @return {@link Player} or Optional.absent() if not found
@@ -67,7 +69,7 @@ public interface Server extends ChannelRegistrar {
     Optional<Player> getPlayer(UUID uniqueId);
 
     /**
-     * Gets a {@link Player} by their name
+     * Gets a {@link Player} by their name.
      *
      * <p>This only works for online players.</p>
      *
@@ -78,6 +80,38 @@ public interface Server extends ChannelRegistrar {
      * @return {@link Player} or Optional.absent() if not found
      */
     Optional<Player> getPlayer(String name);
+
+    /**
+     * Gets the data of a {@link User} by their unique id.
+     * 
+     * @param uniqueId The UUID of the user.
+     * @return {@link User} or Optional.absent() if not found
+     */
+    Optional<User> getUser(UUID uniqueId);
+
+    /**
+     * Gets the data of a {@link User} by their profile.
+     * 
+     * @param uniqueId The UUID of the user.
+     * @return {@link User} or Optional.absent() if not found
+     */
+    Optional<User> getUser(GameProfile profile);
+
+    /**
+     * Gets or creates a persistent {@link User} associated with the 
+     * given {@link GameProfile}.
+     * 
+     * @param profile The profile
+     * @return The user object
+     */
+    User getOrCreateUser(GameProfile profile);
+    
+    /**
+     * Gets the collection of all {@link User}s.
+     *
+     * @return A {@link Collection} of users.
+     */
+    Collection<User> getUsers();
 
     /**
      * Gets all currently loaded {@link World}s.
