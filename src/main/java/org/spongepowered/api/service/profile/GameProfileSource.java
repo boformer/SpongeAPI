@@ -36,6 +36,11 @@ import com.google.common.util.concurrent.ListenableFuture;
  */
 public interface GameProfileSource {
 
+    // TODO explain in javadocs that Future.get() throws an ExecutionException
+    // caused by a ProfileNotFoundException (or IOException) if no profile was
+    // found.
+    // Also explain why it returns Futures!
+    
     /**
      * Looks up a {@link GameProfile} by its unique ID.
      *
