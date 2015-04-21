@@ -24,14 +24,60 @@
  */
 package org.spongepowered.api.service.profile;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+
 import org.spongepowered.api.GameProfile;
+
+import com.google.common.util.concurrent.ListenableFuture;
 
 /**
  * A service which contacts the authentification servers to get a
  * {@link GameProfile} by a given UUID or name.
  *
- * <p>Use the {@link GameProfileCache} if the actuality of the profile data is
- * not relevant.</p>
+ * <p>The service may cache the data of a request for faster lookups. Note that
+ * the cached data may not always be up to date.</p>
+ *
+ * <p>The returned {@code ListenableFuture} throws an {@link ExecutionException}
+ * caused by a {@link ProfileNotFoundException} if the profile does not exist or
+ * an {@link IOException} if a network error occured.</p>
  */
-public interface GameProfileResolver extends GameProfileSource {
+public interface GameProfileResolver
+{
+
+    /**
+     * Looks up a {@link GameProfile} by its unique ID.
+     *
+     * @param uniqueId The unique ID
+     * @param useCache true to perform a cache lookup first
+     * @return The result of the request
+     */
+    ListenableFuture<GameProfile> get(UUID uniqueId, boolean useCache);
+
+    /**
+     * Gets a collection of {@link GameProfile}s by their unique IDs.
+     *
+     * @param uniqueIds The UUIDs
+     * @param useCache true to perform a cache lookup first
+     * @return The result of the request
+     */
+    ListenableFuture<Collection<GameProfile>> getAllById(Iterable<UUID> uniqueIds, boolean useCache);
+
+    /**
+     * Looks up a {@link GameProfile} by its user name.
+     *
+     * @param name The username
+     * @return The result of the request
+     */
+    ListenableFuture<GameProfile> get(String name, boolean useCache);
+
+    /**
+     * Gets a collection of {@link GameProfile}s by their user names.
+     *
+     * @param names The user names
+     * @return The result of the request
+     */
+    ListenableFuture<Collection<GameProfile>> getAllByName(Iterable<String> names, boolean useCache);
 }

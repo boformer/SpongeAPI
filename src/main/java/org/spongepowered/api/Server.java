@@ -82,38 +82,6 @@ public interface Server extends ChannelRegistrar {
     Optional<Player> getPlayer(String name);
 
     /**
-     * Gets the data of a {@link User} by their unique id.
-     * 
-     * @param uniqueId The UUID of the user.
-     * @return {@link User} or Optional.absent() if not found
-     */
-    Optional<User> getUser(UUID uniqueId);
-
-    /**
-     * Gets the data of a {@link User} by their profile.
-     * 
-     * @param uniqueId The UUID of the user.
-     * @return {@link User} or Optional.absent() if not found
-     */
-    Optional<User> getUser(GameProfile profile);
-
-    /**
-     * Gets or creates a persistent {@link User} associated with the 
-     * given {@link GameProfile}.
-     * 
-     * @param profile The profile
-     * @return The user object
-     */
-    User getOrCreateUser(GameProfile profile);
-    
-    /**
-     * Gets the collection of all {@link User}s.
-     *
-     * @return A {@link Collection} of users.
-     */
-    Collection<User> getUsers();
-
-    /**
      * Gets all currently loaded {@link World}s.
      *
      * @return A collection of loaded worlds
