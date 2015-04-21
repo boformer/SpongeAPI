@@ -38,63 +38,64 @@ import com.google.common.base.Optional;
  * Stores the persistent {@link User} data of a {@link Player}.
  */
 public interface UserStorage {
+
     /**
      * Gets the data of a {@link User} by their unique id.
-     * 
+     *
      * @param uniqueId The UUID of the user.
      * @return {@link User} or Optional.absent() if not found
      */
     Optional<User> get(UUID uniqueId);
-    
+
     /**
-     * Gets the data of a {@link User} by their last known user name 
+     * Gets the data of a {@link User} by their last known user name
      * (case-insensitive).
-     * 
-     * <p>To get the current name of a player, use the 
+     *
+     * <p>To get the current name of a player, use the
      * {@link GameProfileResolver} service.</p>
-     * 
+     *
      * @param uniqueId The UUID of the user.
      * @return {@link User} or Optional.absent() if not found
      */
     Optional<User> get(String lastKnownName);
-    
+
     /**
      * Gets the data of a {@link User} by their profile.
-     * 
+     *
      * @param uniqueId The UUID of the user.
      * @return {@link User} or Optional.absent() if not found
      */
     Optional<User> get(GameProfile profile);
 
     /**
-     * Gets or creates a persistent {@link User} associated with the 
-     * given {@link GameProfile}.
-     * 
+     * Gets or creates a persistent {@link User} associated with the given
+     * {@link GameProfile}.
+     *
      * To obtain a {@link GameProfile}, use the {@link GameProfileResolver}.
-     * 
+     *
      * @param profile The profile
      * @return The user object
      */
     User getOrCreate(GameProfile profile);
-    
+
     /**
      * Deletes the data associated with a {@link User}.
-     * 
+     *
      * @param profile The profile
      * @return The user object
      */
     void delete(GameProfile profile);
-    
+
     /**
      * Gets the collection of all stored {@link User}s.
      *
      * @return A {@link Collection} of users.
      */
     Collection<User> getAll();
-    
+
     /**
-     * Returns a collection of matching {@code User}s whose last know user names 
-     * start with the given string (case-insensitive).
+     * Returns a collection of matching {@code User}s whose last known user
+     * names start with the given string (case-insensitive).
      *
      * @param name
      * @return The result of the request

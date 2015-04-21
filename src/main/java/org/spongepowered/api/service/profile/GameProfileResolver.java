@@ -37,15 +37,16 @@ import com.google.common.util.concurrent.ListenableFuture;
  * A service which contacts the authentification servers to get a
  * {@link GameProfile} by a given UUID or name.
  *
- * <p>The service may cache the data of a request for faster lookups. 
- * Note that the cached data may not always be up to date.</p>
+ * <p>The service may cache the data of a request for faster lookups. Note that
+ * the cached data may not always be up to date.</p>
  *
  * <p>The returned {@code ListenableFuture} throws an {@link ExecutionException}
- * caused by a {@link ProfileNotFoundException} if the profile does not exist 
- * or an {@link IOException} if a network error occured.</p>
+ * caused by a {@link ProfileNotFoundException} if the profile does not exist or
+ * an {@link IOException} if a network error occured.</p>
  */
 public interface GameProfileResolver
 {
+
     /**
      * Looks up a {@link GameProfile} by its unique ID.
      *
